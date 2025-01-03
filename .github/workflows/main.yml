@@ -32,7 +32,7 @@ jobs:
     - name: Build Docker image
       run: |
         # Attempt to build the image first
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/borrower-qualification-web:${{ github.sha }} -f Rule_Engine_web_app/Dockerfile.prod .
+        docker build -t experience-centre-dummy:${{ github.sha }} -f ./Dockerfile.prod .
         if [ $? -ne 0 ]; then
           echo "Docker build failed! Aborting the process."
           exit 1
