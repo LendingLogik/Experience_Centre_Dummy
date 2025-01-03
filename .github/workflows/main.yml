@@ -1,0 +1,61 @@
+name: Python Docker CI with Docker Compose
+
+# Trigger the workflow on push to main and pull request to main
+on:
+  push:
+    branches:
+      - main  # This will run on pushes to the main branch
+  pull_request:
+    branches:
+      - main  # This will run on pull requests targeting the main branch
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    # Set up Docker service
+    services:
+      docker:
+        image: docker:19.03.12
+        options: --privileged
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Ensure Docker Compose is installed (optional if already preinstalled)
+    # - name: Set up Docker Compose
+    #   run: |
+    #     curl -sSL https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+    #     chmod +x /usr/local/bin/docker-compose
+
+    - name: Build Docker image
+      run: |
+        # Attempt to build the image first
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/borrower-qualification-web:${{ github.sha }} -f Rule_Engine_web_app/Dockerfile.prod .
+        if [ $? -ne 0 ]; then
+          echo "Docker build failed! Aborting the process."
+          exit 1
+        fi
+        echo "Docker build successful"
+
+    # Stop any existing running containers first but do not delete images
+    - name: Stop running containers (without deleting images)
+      run: |
+        docker-compose stop || echo "No running containers to stop"
+
+    # Now, clean up and remove old containers, images, and networks
+    - name: Remove old containers and networks
+      run: |
+        docker-compose down -v --remove-orphans || echo "No containers to remove"
+
+    # Now, start the new containers
+    - name: Start new containers with Docker Compose
+      run: |
+        docker-compose -f docker-compose.prod.yml up -d --build
+        if [ $? -ne 0 ]; then
+          echo "Failed to start the container! Restoring the previous state."
+          # Attempt to restore the previous state (you could re-run the previous working container or image)
+          docker-compose up -d || echo "Rollback failed"
+          exit 1
+        fi
