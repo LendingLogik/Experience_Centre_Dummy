@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  web:
+    build: 
+      context: ./
+      dockerfile: Dockerfile.prod
+    command: gunicorn --bind 0.0.0.0:5055 run:app
+    ports:
+      - 5055:5055
+    expose:
+    - 5055
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web
+ 

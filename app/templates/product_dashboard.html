@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}Experience Center Dashboard{% endblock %}
+
+{% block additional_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="mainContainer">
+    <div class="features-grid ">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Experience Center Dashboard</h1>
+                <h1>{{ context.Header }}</h1>
+                <p>Explore resources and tools to enhance your development journey</p>
+            </div>
+            <div class="cards-grid">
+                {% if context.notebooks %}
+                <!-- Notebook Explorer Card -->
+                <div class="card"
+                    onclick="TogglePopup(event, 'notebooks')">
+                    <div class="card-icon">📓</div>
+                    <h3 class="card-title">Notebook Explorer</h3>
+                    <p class="card-description">
+                        Browse and manage your notebooks collection. Access tutorials, examples, and documentation.
+                    </p>
+                </div>
+                {% endif %}
+                {% if context.salesforceOrg %}
+                <!-- Salesforce Card -->
+                <div class="card"
+                    onclick="TogglePopup(event, 'salesforceOrg')">
+                    <div class="card-icon">☁️</div>
+                    <h3 class="card-title">Salesforce Integration</h3>
+                    <p class="card-description">
+                        Access Salesforce resources, documentation, and integration tools.
+                    </p>
+                </div>
+                {% endif %}
+                
+                {% if context.githubRepo %}
+                <!-- GitHub Card -->
+                <div class="card" id="Github" onclick="TogglePopup(event, 'githubRepo')">
+                    <div class="card-icon">📚</div>
+                    <h3 class="card-title">GitHub Code Base</h3>
+                    <p class="card-description">
+                        Explore our codebase, contribute to projects, and access documentation.
+                    </p>
+                </div>
+                {% endif %}
+
+                <!-- Popover -->
+                <div class="popover" id="popover" style="display: none;">
+                    <!-- <div class="fa fa-info-circle popoverCrossicon" ></div>
+                    <div class="container" id="popover-item-container"></div> -->
+                </div>
+
+                {% if context.videoTutorials %}
+                <!-- Video Tutorials Card -->
+                <div class="card"
+                    onclick="TogglePopup(event, 'videoTutorials')">
+                    <div class="card-icon">🎥</div>
+                    <h3 class="card-title">Video Tutorials</h3>
+                    <p class="card-description">
+                        Watch step-by-step tutorials and learning resources.
+                    </p>
+                </div>
+                {% endif %}
+
+                {% if context.videoDemonstration %}
+                <!-- Video Demonstration Card -->
+                <div class="card"
+                    onclick="TogglePopup(event, 'videoDemonstration')">
+                    <div class="card-icon">🎥</div>
+                    <h3 class="card-title">Video Demonstration</h3>
+                    <p class="card-description">
+                        Watch complete Demo and working process.
+                    </p>
+                </div>
+                {% endif %}
+
+                {% if context.documentations %}
+                <!-- Documentation Card -->
+                <div class="card"
+                    onclick="TogglePopup(event, 'documentations')">
+                    <div class="card-icon">📖</div>
+                    <h3 class="card-title">Documentation</h3>
+                    <p class="card-description">
+                        Access comprehensive documentation and guides.
+                    </p>
+                </div>
+                {% endif %}
+
+                {% if context.presentations %}
+                <!-- PPT Presentation Card -->
+                <div class="card"
+                    onclick="TogglePopup(event, 'presentations')">
+                    <div class="card-icon">📖</div>
+                    <h3 class="card-title">Presentation</h3>
+                    <p class="card-description">
+                        Access thoughtfull Presentation and views.
+                    </p>
+                </div>
+                {% endif %}
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stat-item">
+                <span class="stat-number">100+</span>
+                <span class="stat-label">Available Notebooks</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Video Tutorials</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">99+</span>
+                <span class="stat-label">GitHub Commits</span>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<!-- Pass context to JavaScript -->
+<script>
+   const context = {{ context|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/product_dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+ 
+{% block title %}Experiences - Jupyter Integration{% endblock %}
+ 
+{% block additional_head %}
+<!-- Jupyter Notebook CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/experiences.css') }}">
+{% endblock %}
+ 
+{% block content %}
+<div class="mainContainer">
+ 
+<div class="experience-header">
+    <h1>Interactive Experience Center</h1>
+    <p>Explore data and analytics through Jupyter notebooks</p>
+</div>
+ 
+<div class="jupyter-notebook-container">
+    <div class="notebook-controls">
+        <button class="notebook-button" style="display: none;" onclick="runAll()">Run All</button>
+        <button class="notebook-button" style="display: none;" onclick="clearOutputs()">Clear Outputs</button>
+        <button class="notebook-button" onclick="downloadNotebook()">Download Notebook</button>
+    </div>
+ 
+    <div id="notebook-content">
+        {{ notebook_content | safe }}
+    </div>
+</div>
+</div>
+{% endblock %}
+ 
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+<script rel="stylesheet" src="{{ url_for('static', filename='js/experiences.js') }}"></script>
+{% endblock %}
+ 
+ 

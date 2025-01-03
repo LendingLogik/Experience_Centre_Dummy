@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Notebook Explorer{% endblock %}
+
+{% block additional_head %}
+
+{% endblock %}
+
+{% block content %}
+<div class="mainContainer">
+<div class="explorer-header">
+    <h1>Notebook Explorer</h1>
+    <p>Browse available notebooks and folders</p>
+</div>
+
+<div class="explorer-container">
+    {% if items %}
+    <ul class="file-list">
+        {% for item in items %}
+        <li class="file-item">
+            {% if item.type == 'folder' %}
+            <span class="file-icon folder-icon">📁</span>
+            {% else %}
+            <span class="file-icon file-icon-notebook">📓</span>
+            {% endif %}
+            <span class="file-name">{{ item.name }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div class="empty-state">
+        <p>No notebooks or folders found.</p>
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const fileItems = document.querySelectorAll('.file-item');
+    
+    fileItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Get the query string
+            const queryString = window.location.search;
+
+            const fileName = this.querySelector('.file-name').textContent;
+            // For files, you could redirect to view the notebook
+            // For folders, you could load the contents of that folder
+            console.log("Query String : ", queryString);
+            if (this.querySelector('.folder-icon')) {
+                // Handle folder click
+                // Get specific query parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const pathParam = urlParams.get('path');
+                console.log('Folder clicked:', fileName);
+                if (queryString!= ""){
+                    window.location.href = `/dev/notebook-explorer?path=${pathParam}/${fileName}`;
+                }
+                else{
+                    window.location.href = `/dev/notebook-explorer?path=notebooks/${fileName}`;
+                }
+            } else {
+                // Handle file click
+                console.log('File clicked:', fileName);
+
+
+                // Get specific query parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const pathParam = urlParams.get('path');
+                // Example: "notebooks/folder"
+                console.log("the path param :",pathParam);
+
+                if (queryString!= ""){
+                    console.log("Karobaar  lage !");
+                    window.location.href = `/dev/experiences?fileName=${pathParam}/${fileName}`;
+                }
+                else{
+                    window.location.href = `/dev/experiences?fileName=${fileName}`;
+                    console.log("Line 126 ");
+                }
+                // window.location.href = `/notebook-explorer?path=notebooks/${fileName}`;
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

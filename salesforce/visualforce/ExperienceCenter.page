@@ -1,0 +1,19 @@
+<apex:page controller="ExperienceCenterController">
+    <apex:slds />
+    
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            <div id="visualization"></div>
+        </div>
+        <div class="slds-col slds-size_1-of-3">
+            <div class="controls">
+                <!-- Control elements -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script>
+        // Visualization code similar to charts.js
+    </script>
+</apex:page>

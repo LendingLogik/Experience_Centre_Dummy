@@ -1,0 +1,70 @@
+.jupyter-notebook-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+ 
+.experience-header {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+ 
+.notebook-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+ 
+.notebook-button {
+    padding: 0.5rem 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+ 
+.notebook-button:hover {
+    background: #0056b3;
+}
+ 
+/* Jupyter Notebook Styling */
+.jp-InputArea {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+ 
+.jp-OutputArea {
+    padding: 1rem;
+    border-left: 3px solid #28a745;
+    margin: 1rem 0;
+}
+ 
+.jp-RenderedText {
+    font-family: 'Monaco', 'Menlo', monospace;
+}
+ 
+.cell {
+    margin: 1rem 0;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    overflow: hidden;
+}
+ 
+.cell-toolbar {
+    background: #f8f9fa;
+    padding: 0.5rem;
+    border-bottom: 1px solid #dee2e6;
+}
+ 

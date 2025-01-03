@@ -1,0 +1,30 @@
+<!-- templates/salesforce/records.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="records-container">
+    <h2>{{ object_name }} Records</h2>
+    <table class="records-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.Name }}</td>
+                <td>
+                    <a href="{{ url_for('salesforce.record_detail', 
+                                      object_name=object_name, 
+                                      record_id=record.Id) }}">
+                        View Details
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

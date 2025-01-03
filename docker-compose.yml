@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./
+    command: python run.py 
+    volumes:
+      - ./:/usr/src/app/
+    ports:
+      - 5055:5055
+    

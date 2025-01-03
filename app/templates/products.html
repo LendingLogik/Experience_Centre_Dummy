@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+ 
+{% block title %}Experience Center{% endblock %}
+ 
+{% block content %}
+<section class="features-section">
+    <h2 class="section-title">{{context.Header}}</h2>
+    <div class="features-grid">
+        {% if context.credit_decision_logik %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Credit_decision_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Credit_decision_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>{{context.credit_decision_logik.Heading}}</h3>
+                <p>{{context.credit_decision_logik.TagLine}}</p>
+            </div>
+        </a>
+        {% endif %}
+        {% if context.Borrower_qualification_logik %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Borrower_qualification_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Borrower_qualification_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>{{context.Borrower_qualification_logik.Heading}}</h3>
+                <p>{{context.Borrower_qualification_logik.TagLine}}</p>
+            </div>
+        </a>
+        {% endif %}
+        {% if context.Bank_statement_visualizer_logik %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Bank_statement_visualizer_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Bank_statement_visualizer_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>{{context.Bank_statement_visualizer_logik.Heading}}</h3>
+                <p>{{context.Bank_statement_visualizer_logik.TagLine}}</p>
+            </div>
+        </a>
+        {% endif %}
+        {% if context.Marketing_logik_dashboard %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Marketing_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Marketing_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <h3>{{context.Marketing_logik_dashboard.Heading}}</h3>
+            <p>{{context.Marketing_logik_dashboard.TagLine}}</p>
+        </div>
+        </a>
+        {% endif %}
+        {% if context.cross_selling_logik_dashboard %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.cross_selling_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.cross_selling_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-laptop"></i>
+            </div>
+            <h3>{{context.cross_selling_logik_dashboard.Heading}}</h3>
+            <p>{{context.cross_selling_logik_dashboard.TagLine}}</p>
+        </div>
+        </a>
+        {% endif %}
+        {% if context.Borrower_lead_routing_logik_dashboard %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Borrower_lead_routing_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Borrower_lead_routing_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>{{context.Borrower_lead_routing_logik_dashboard.Heading}}</h3>
+                <p>{{context.Borrower_lead_routing_logik_dashboard.TagLine}}</p>
+            </div>
+        </a>
+        {% endif %}
+        {% if context.Bad_debt_analyzer_logik_dashboard %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Bad_debt_analyzer_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Bad_debt_analyzer_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+            <div class="feature-card">
+                <div class="feature-icon">
+            
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>{{context.Bad_debt_analyzer_logik_dashboard.Heading}}</h3>
+                <p>{{context.Bad_debt_analyzer_logik_dashboard.TagLine}}</p>
+            </div>
+        </a>
+ 
+        {% endif %}
+        {% if context.Compliance_logik_dashboard %}
+        {% if context.IsDev %}
+            <a href="{{ url_for('dev_main.Compliance_logik_dashboard') }}" class="special-link" >
+        {% else %}
+            <a href="{{ url_for('main.Compliance_logik_dashboard') }}" class="special-link" >
+        {% endif %}
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <h3>{{context.Compliance_logik_dashboard.Heading}}</h3>
+                <p>{{context.Compliance_logik_dashboard.TagLine }}</p>
+            </div>
+        </a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}
+ 
